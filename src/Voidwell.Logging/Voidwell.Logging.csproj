@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+    
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <Description>
+This is a simple package meant to be used for Voidwell.com.
+Log messages are output to console as a GELF compliant JSON to be consumed by docker's GELF log driver.
+    </Description>
+    <Copyright>Copyright 2018 - Matthew Tremper</Copyright>
+    <Authors>VoidwellLabs</Authors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyName>Voidwell.Logging</AssemblyName>
+    <PackageId>Voidwell.Logging</PackageId>
+    <PackageTags>voidwell</PackageTags>
+    <PackageProjectUrl>https://github.com/Lampjaw/Voidwell.Logging</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/Lampjaw/Voidwell.Logging/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Lampjaw/Voidwell.Logging</RepositoryUrl>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <IncludeSymbols>False</IncludeSymbols>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+    
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+</Project>
