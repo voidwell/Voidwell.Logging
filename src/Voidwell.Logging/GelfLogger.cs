@@ -108,11 +108,11 @@ namespace Voidwell.Logging
         {
             if (state is FormattedLogValues logValues)
             {
-                return logValues.Take(logValues.Count - 1);
+                return logValues.Take(logValues.Count);
             }
             else if (state is IReadOnlyList<KeyValuePair<string, object>> rolLogValues)
             {
-                return rolLogValues.Take(rolLogValues.Count - 1);
+                return rolLogValues.Take(rolLogValues.Count);
             }
 
             return Enumerable.Empty<KeyValuePair<string, object>>();
@@ -137,13 +137,16 @@ namespace Voidwell.Logging
         {
             foreach (var field in additionalFields)
             {
-                if (AdditionalFieldKeyRegex.IsMatch(field.Key) && !ReservedAdditionalFieldKeys.Contains(field.Key))
+                if (AdditionalFieldKeyRegex.IsMatch(field.Key))
                 {
-                    yield return field;
-                }
-                else
-                {
-                    Debug.Fail($"GELF message has additional field with invalid key \"{field.Key}\".");
+                    if (!ReservedAdditionalFieldKeys.Contains(field.Key))
+                    {
+                        yield return field;
+                    }
+                    else
+                    {
+                        Debug.Fail($"GELF message has additional field with invalid key \"{field.Key}\".");
+                    }
                 }
             }
         }

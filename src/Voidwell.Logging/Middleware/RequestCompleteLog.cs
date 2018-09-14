@@ -22,7 +22,7 @@ namespace Voidwell.Logging.Middleware
             _elapsed = elapsed;
         }
 
-        public int Count => 4;
+        public int Count => 5;
 
         public KeyValuePair<string, object> this[int index]
         {
@@ -38,6 +38,8 @@ namespace Voidwell.Logging.Middleware
                         return new KeyValuePair<string, object>("ContentType", _httpContext.Response.ContentType);
                     case 3:
                         return new KeyValuePair<string, object>("Method", _httpContext.Request.Method);
+                    case 4:
+                        return new KeyValuePair<string, object>("RequestIP", _httpContext.Connection.RemoteIpAddress.ToString());
                     default:
                         throw new IndexOutOfRangeException(nameof(index));
                 }
@@ -50,11 +52,12 @@ namespace Voidwell.Logging.Middleware
             {
                 _cachedToString = string.Format(
                     CultureInfo.InvariantCulture,
-                    "Request {0} {1} finished in {2}ms ({3})",
+                    "Request {0} {1} finished in {2}ms ({3}) from {4}",
                     _httpContext.Request.Method.ToUpper(),
                     _httpContext.Request.Path,
                     _elapsed.TotalMilliseconds,
-                    _httpContext.Response.StatusCode);
+                    _httpContext.Response.StatusCode,
+                    _httpContext.Connection.RemoteIpAddress.ToString());
             }
 
             return _cachedToString;
