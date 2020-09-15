@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Internal;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -106,7 +105,7 @@ namespace Voidwell.Logging
 
         private static IEnumerable<KeyValuePair<string, object>> GetStateAdditionalFields<TState>(TState state)
         {
-            if (state is FormattedLogValues logValues)
+            if (state is IReadOnlyCollection<KeyValuePair<string, object>> logValues)
             {
                 return logValues.Take(logValues.Count);
             }
