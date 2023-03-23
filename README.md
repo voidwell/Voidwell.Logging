@@ -1,3 +1,5 @@
+# This repository is now archived and no longer in use. Logging now lives in [Voidwell.Microservice](https://github.com/voidwell/Voidwell.Microservice).
+
 # Voidwell.Logging
 
 [![NuGet](https://img.shields.io/nuget/v/Voidwell.Logging.svg)](https://www.nuget.org/packages/Voidwell.Logging/)
